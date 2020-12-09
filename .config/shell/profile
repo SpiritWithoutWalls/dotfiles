@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# profile file. Runs on login. Environmental variables are set here
+
+# Adds `~/.local/bin` to $PATH
+export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':' -)"
+
+# Default programs:
+export EDITOR="nvim"
+
+# ~/ Clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+
+## Switch escape and caps if tty and no passwd required:
+# sudo groupadd loadkeys             # you can use any group name 
+# sudo chgrp loadkeys /bin/loadkeys
+# sudo chmod 4750 /bin/loadkeys      # setuid, group- and user-only read and execution
+# sudo gpasswd -a $USER loadkeys      # add user to the group
+# loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/keymaps/ttymaps.kmap 2>/dev/null
