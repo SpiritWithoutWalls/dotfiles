@@ -1,1 +1,1 @@
-.config/shell/profile
+. "$HOME/.config/shell/profile"
